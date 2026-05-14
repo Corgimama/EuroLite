@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Eurovision Voting Lite</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+</head>
+<body>
+  <h1>Eurovision Voting Lite</h1>
+  <p>Выберите роль и введите пароль:</p>
+  <div id="login">
+    <select id="roleSelect">
+      <option value="viewer">Зритель</option>
+      <option value="admin">Администратор</option>
+    </select>
+    <input type="password" id="pwd" placeholder="пароль">
+    <button id="loginBtn">Войти</button>
+    <p id="errMsg" style="color:red;"></p>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

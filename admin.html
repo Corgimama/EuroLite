@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Eurovision</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 1024px)">
+  <link rel="icon" type="image/x-icon" href="icon.ico">
+  <script src="app.js"></script>
+  <script>guardPage('admin');</script>
+</head>
+<body class="admin-page">
+  <h1 style="padding-left: 20px; padding-right: 20px;">Админ‑панель</h1>
+  
+  <section id="stageRelax" class="stage" style="display:none;">
+    <div id="relaxContent" style="display:none; padding: 0 20px;">
+      <h2>Итоговая таблица</h2>
+      <div id="columnToggle"></div>
+      <div id="finalTableContainer"></div>
+      <div class="btn-group">
+        <button id="downloadImgBtn">Скачать как PNG</button>
+        <button id="newFinalBtn">Новый финал</button>
+      </div>
+    </div>
+    <div id="relaxEmpty" style="display:none; padding: 0 20px;">
+      <div class="btn-group">
+        <button id="newFinalBtnEmpty">Новый финал</button>
+      </div>
+    </div>
+  </section>
+  
+  <section id="stagePreparing" class="stage" style="display:none;">
+    <div class="participants-editor" style="padding: 0 20px;">
+      <div class="editor-header">
+        <button id="addParticipantBtn">Добавить финалиста</button>
+        <button id="startBtn">Начать голосование</button>
+      </div>
+      <div id="participantsContainer"></div>
+    </div>
+  </section>
+  
+  <section id="stageVoting" class="stage" style="display:none; padding: 0 20px;">
+    <p class="status" id="adminStatus">Статус: </p>
+    <p>Проголосовало: <span id="votedCount">0</span></p>
+    <div id="votersListContainer" style="margin: 15px 0; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px; display: none;">
+        <strong>✅ Проголосовавшие зрители:</strong>
+        <div id="votersList" style="margin-top: 8px; font-size: 14px;"></div>
+    </div>
+    <div class="btn-group">
+        <button id="closeBtn">Завершить голосование</button>
+    </div>
+</section>
+  
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h4 id="modalTitle">Новый участник</h4>
+      <label>Страна
+        <select id="countrySelect"></select>
+      </label>
+      <label>Исполнитель
+        <input type="text" id="performerInput" placeholder="Имя исполнителя">
+      </label>
+      <label>Песня
+        <input type="text" id="songInput" placeholder="Название песни">
+      </label>
+      <div class="buttons">
+        <button id="modalSaveBtn">Принять</button>
+        <button id="modalDeleteBtn">Удалить</button>
+        <button id="modalCancelBtn">Отмена</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="admin.js"></script>
+  <script src="html2canvas.min.js"></script>
+</body>
+</html>

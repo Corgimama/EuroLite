@@ -1,0 +1,69 @@
+/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
+/* Плашка с размерами экрана 
+/body::before { content: "Desktop (>1024px)"; position: fixed; bottom: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 6px 12px; border-radius: 8px; font-size: 12px; z-index: 9999; font-family: monospace; pointer-events: none; font-weight: bold; }
+
+@media (max-width: 1024px) { body::before { content: "1024px and below"; background: #9e0517; } }
+@media (max-width: 768px) { body::before { content: "768px and below (Tablet)"; background: #210E90; } }
+*/
+@media (max-width: 1024px) {
+    /*body::before { content: "480px and below (Phone)"; background: #b40b0b; font-size: 11px; }*/
+    body:not(.login-page) { padding: 0 8px; }
+    h1 { font-size: 22px; margin-top: 10px; margin-bottom: 5px; }
+    .header-area { padding: 8px 0 5px; }
+    
+    /* Карточки */
+    .card { height: 85px; border-radius: 12px; padding: 0 8px; margin-bottom: 8px; }
+    .card .order { font-size: 32px; min-width: 40px; margin-right: 8px; }
+    .card img { height: 55%; border-radius: 6px; margin-right: 8px; }
+    .performer { font-size: 15px; }
+    .song { font-size: 12px; }
+    .card .info { gap: 2px; }
+    
+    /* Таблица очков */
+    .score-row { height: 85px; border-radius: 8px; margin-bottom: 8px; }
+    .score-points { width: 45px; font-size: 18px; line-height: 85px; }
+    .score-target { height: 85px; margin-left: 8px; }
+    .score-target span { font-size: 11px; }
+    .score-target img { height: 55%; border-radius: 8px; }
+    
+    /* ========== VIEWER - РАВНОЕ ДЕЛЕНИЕ ========== */
+    body:not(.admin-page) { overflow: hidden; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; }
+    body:not(.admin-page) .main-area { overflow: hidden; padding: 5px 0; flex: 1; min-height: 0; }
+    body:not(.admin-page) #stageVoting { height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+    body:not(.admin-page) .viewer-panel { flex-direction: column; gap: 10px; flex: 1; min-height: 0; overflow: hidden; }
+    
+    /* Оба блока имеют flex:1 - равное деление пространства */
+    body:not(.admin-page) .score-board { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding-right: 8px; padding-top: 3px; order: 1; }
+    body:not(.admin-page) .participants-box { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding-right: 8px; padding-top: 3px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 8px; order: 2; }
+    
+    body:not(.admin-page) .score-row,
+    body:not(.admin-page) .participants-box .card { flex-shrink: 0; }
+    
+    /* Кнопки */
+    button, input[type=button], input[type=submit] { padding: 10px 14px; font-size: 16px; border-radius: 8px; }
+    .btn-group { gap: 8px; margin-top: 12px; }
+    .vote-controls-sticky { padding: 8px 0; gap: 8px; }
+    #viewerName { padding: 8px; font-size: 14px; }
+    
+    /* Админка */
+    .editor-header { flex-direction: column; gap: 10px; padding: 10px 0; }
+    .editor-header button { width: 100%; }
+    #participantsContainer .card { height: 85px; }
+    #participantsContainer .card .order { font-size: 32px; min-width: 40px; }
+    #participantsContainer .card img { height: 55%; }
+    #participantsContainer .card .performer { font-size: 15px; }
+    #participantsContainer .card .song { font-size: 12px; }
+    
+    /* Финальная таблица */
+    .final-table { font-size: 10px; }
+    .final-table th, .final-table td { padding: 4px 5px; }
+    
+    /* Модальное окно */
+    .modal { width: 90%; padding: 12px; }
+    .modal h4 { font-size: 18px; }
+    .modal label { font-size: 14px; }
+    .modal input, .modal select { font-size: 14px; }
+    
+    .card, .score-target { cursor: default; touch-action: manipulation; }
+    .error-message { bottom: 10px; right: 10px; left: 10px; font-size: 14px; text-align: center; }
+}

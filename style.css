@@ -1,0 +1,487 @@
+/* ========== ОСНОВНЫЕ СТИЛИ ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #FFEDD5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========== СТРАНИЦА ВХОДА ========== */
+body:has(#login) {
+    padding: 20px;
+    align-items: center
+}
+
+body:has(#login) h1 {
+    font-size: 42px;
+    color: #9e0517;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body:has(#login) p {
+    font-size: 25px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+body:has(#login) #login {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+body:has(#login) #roleSelect,
+body:has(#login) #pwd {
+    padding: 9px 10px;
+    font-size: 20px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+body:has(#login) #roleSelect:focus,
+body:has(#login) #pwd:focus {
+    outline: none;
+    border-color: #9e0517;
+}
+
+body:has(#login) #loginBtn {
+    padding: 9px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #9e0517;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 5px;
+}
+
+body:has(#login) #loginBtn:hover {
+    background: #b30e1b;
+}
+
+body:has(#login) #errMsg {
+    color: #f44336;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ========== ОБЩИЕ СТИЛИ ДЛЯ АДМИНКИ И ЗРИТЕЛЯ ========== */
+body:not(.login-page) {
+    padding: 0 20px;
+}
+
+.header-area {
+    flex-shrink: 0;
+    padding: 20px 0 10px;
+    border-bottom: 2px solid #9e0517;
+}
+
+h1 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.status {
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.status-voting { background: #4caf50; color: white; }
+.status-preparing { background: #ff9800; color: white; }
+.status-relax { background: #9e0517; color: white; }
+
+.vote-controls-sticky {
+    position: sticky;
+    top: 0;
+    background: #FFEDD5;
+    padding: 10px 0;
+    z-index: 99;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+#viewerName {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+}
+
+.main-area {
+    flex: 1;
+    padding: 20px 0;
+    min-height: 0;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 0 15px;
+    background: #4a063f;
+    cursor: grab;
+    margin-bottom: 10px;
+    user-select: none;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    overflow-x:overlay;
+    overflow-y: hidden;
+}
+
+.card:active { cursor: grabbing; }
+.card.dragging { cursor: grabbing !important; }
+.card.dragging-opacity { opacity: 0.5; }
+.card.drag-over {
+    background: #4a2faa;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card .order {
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 1;
+    margin-right: 20px;
+    min-width: 40px;
+    text-align: center;
+    color: #f1e541;
+}
+
+.card img {
+    height: 80%;
+    width: auto;
+    margin-right: 15px;
+    border-radius: 10px;
+}
+
+.card .info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px; /* было 6px */
+}
+
+.performer {
+    font-weight: bold;
+    color: #7fff00;
+    font-size: 23px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song {
+    color: #ff0;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ========== ТАБЛИЦА ОЧКОВ (viewer) - УМЕНЬШЕНА НА 10px ========== */
+.score-row {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    margin-bottom: 10px;
+    background: #000BA3;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.score-row:first-child { background: #431377; }
+.score-row:last-child { background: #b40b0b; }
+
+.score-points {
+    width: 70px; /* было 80px */
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px; /* было 32px */
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    line-height: 90px;
+    flex-shrink: 0;
+}
+
+.score-target {
+    flex: 1;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    background: inherit;
+    border-radius: 0 8px 8px 0;
+    min-width: 0;
+    margin-left: 20px; /* было 25px */
+    overflow: overlay;
+    cursor: grab;
+}
+
+.score-target.over { background: #e0e0e0; }
+.score-target.dragging { opacity: 0.5; cursor: grabbing; }
+.score-target.drag-over {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+}
+
+.score-target span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem; /* было 1.2rem */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.score-target img {
+    height: 75%;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+/* ========== КНОПКИ ========== */
+button, input[type=button], input[type=submit] {
+    padding: 13px 18px;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
+    background: #9e0517;
+    color: #fff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+button:hover { background: #b30e1b; }
+button:disabled { background: #666; cursor: not-allowed; }
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-shrink: 0;
+}
+
+/* ========== МОДАЛЬНОЕ ОКНО ========== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    width: 340px;
+}
+
+.modal label {
+    display: block;
+    margin-top: 12px;
+}
+
+.modal input, .modal select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+}
+
+.modal .buttons {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ========== ФИНАЛЬНАЯ ТАБЛИЦА ========== */
+.final-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.1rem; /* было 1.2rem */
+    margin-top: 10px;
+}
+
+.final-table th, .final-table td {
+    border: 1px solid #720ca1;
+    padding: 6px 10px; /* было 8px 12px */
+    text-align: center;
+}
+
+.final-table th.left, .final-table td.left { text-align: left; }
+.final-table td.zero { background: #e82e2e; }
+.final-table tr.gold { background: #f8ff24; font-weight: bold; }
+.final-table tr.silver { background: #d5d5d5; font-weight: bold; }
+.final-table tr.bronze { background: #f49b44; font-weight: bold; }
+.final-table tr:not(.gold):not(.silver):not(.bronze) { background: #fff3de; }
+
+/* ========== АДМИНКА ========== */
+.participants-editor {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    background: #FFEDD5;
+    padding: 15px 0;
+    z-index: 100;
+}
+
+#participantsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 30px;
+}
+
+#participantsContainer .card {
+    height: 90px;
+    margin-bottom: 0;
+    overflow-x: overlay;
+    overflow-y: hidden;
+}
+
+#participantsContainer .card .order {
+    font-size: 60px;
+    min-width: 50px;
+}
+
+#participantsContainer .card img {
+    height: 80%;
+}
+
+#participantsContainer .card .performer {
+    font-size: 28px;
+}
+
+#participantsContainer .card .song {
+    font-size: 20px;
+}
+
+.admin-page .stage {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* ========== ЗРИТЕЛЬ (VIEWER) ========== */
+body:not(.admin-page) {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body:not(.admin-page) .main-area {
+    overflow: hidden;
+}
+
+body:not(.admin-page) #stageVoting {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+body:not(.admin-page) .viewer-panel {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+body:not(.admin-page) .score-board,
+body:not(.admin-page) .participants-box {
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+body:not(.admin-page) .score-board { flex: 1; }
+body:not(.admin-page) .participants-box {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+body:not(.admin-page) .score-row,
+body:not(.admin-page) .participants-box .card {
+    flex-shrink: 0;
+}
+
+/* ========== ОСТАЛЬНОЕ ========== */
+.error-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #f44336;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+
+#stagePreparing {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.1rem; /* было 1.2rem */
+    color: #555;
+}
+
+.viewer-modal { width: 320px; }
+.participants-box.drag-over {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
